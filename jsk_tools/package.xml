@@ -1,6 +1,6 @@
 <package format="3">
   <name>jsk_tools</name>
-  <version>3.0.1</version>
+  <version>3.0.2</version>
   <description>Includes emacs scripts, ros tool alias generator, and launch doc generator.</description>
 
   <maintainer email="ueda@jsk.t.u-tokyo.ac.jp">Ryohei Ueda</maintainer>
@@ -23,6 +23,8 @@
   <!-- provides rospy_rclpy_compat.py, shared across this repo's ROS2-
        ported packages. -->
   <exec_depend>jsk_ros1_ros2_compat</exec_depend>
+  <!-- jsk_ros1_ros2_compat_install_python() in CMakeLists.txt -->
+  <buildtool_depend condition="$ROS_VERSION == 2" version_gte="3.0.2">jsk_ros1_ros2_compat</buildtool_depend>
   <exec_depend condition="$ROS_VERSION == 1">actionlib</exec_depend>
   <exec_depend condition="$ROS_VERSION == 1">cv_bridge</exec_depend>
   <exec_depend condition="$ROS_VERSION == 1">diagnostic_aggregator</exec_depend>
