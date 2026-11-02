@@ -1,0 +1,12 @@
+Source: ros-rolling-jsk-rosbag-tools
+Section: misc
+Priority: optional
+Maintainer: "Iori Yanokura" <yanokura@jsk.imi.i.u-tokyo.ac.jp>
+Build-Depends: debhelper (>= 9.0.0), libjpeg-dev, libwebp-dev, ros-rolling-ament-cmake, ros-rolling-ament-cmake-pytest <!nocheck>, ros-rolling-ament-cmake-python, ros-rolling-ros-workspace
+Homepage: https://index.ros.org/p/jsk_rosbag_tools/#rolling
+Standards-Version: 3.9.2
+
+Package: ros-rolling-jsk-rosbag-tools
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, ffmpeg, libavcodec-dev, libavformat-dev, libavutil-dev, libswscale-dev, python3-numpy, python3-scipy, python3-setuptools, python3-termcolor, python3-tqdm, python3-yaml, ros-rolling-audio-common-msgs, ros-rolling-cv-bridge, ros-rolling-jsk-ros1-ros2-compat, ros-rolling-sensor-msgs, ros-rolling-ros-workspace
+Description: The rosbag tools
