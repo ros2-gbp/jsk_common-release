@@ -1,6 +1,6 @@
 <package format="3">
   <name>jsk_tools</name>
-  <version>3.0.2</version>
+  <version>3.0.3</version>
   <description>Includes emacs scripts, ros tool alias generator, and launch doc generator.</description>
 
   <maintainer email="ueda@jsk.t.u-tokyo.ac.jp">Ryohei Ueda</maintainer>
@@ -15,6 +15,7 @@
 
   <buildtool_depend condition="$ROS_VERSION == 1">catkin</buildtool_depend>
   <buildtool_depend condition="$ROS_VERSION == 2">ament_cmake</buildtool_depend>
+  <buildtool_depend condition="$ROS_VERSION == 2">ros_environment</buildtool_depend>
 
   <build_depend condition="$ROS_VERSION == 1">dynamic_reconfigure</build_depend>
   <build_depend condition="$ROS_VERSION == 1">git</build_depend>
