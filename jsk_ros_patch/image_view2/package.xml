@@ -1,6 +1,6 @@
 <package format="3">
   <name>image_view2</name>
-  <version>3.0.2</version>
+  <version>3.0.3</version>
   <description>A simple viewer for ROS image topics with draw-on features</description>
   <maintainer email="k-okada@jsk.t.u-tokyo.ac.jp">Kei Okada</maintainer>
 
@@ -13,6 +13,7 @@
 
   <buildtool_depend condition="$ROS_VERSION == 1">catkin</buildtool_depend>
   <buildtool_depend condition="$ROS_VERSION == 2">ament_cmake</buildtool_depend>
+  <buildtool_depend condition="$ROS_VERSION == 2">ros_environment</buildtool_depend>
 
   <!-- cv_bridge, geometry_msgs, image_geometry, image_transport,
        message_filters, sensor_msgs, std_msgs, std_srvs are released for
