@@ -1,7 +1,15 @@
-# Fall back to ROS1 when $ROS_VERSION is unset (pre-ros_environment distros,
-# e.g. indigo); every ROS2 environment always sets it via ros_environment.
+# $ENV{ROS_VERSION} is set by ros_environment, which is missing on
+# pre-ros_environment distros (e.g. indigo) and on ROS2 builds that do not
+# depend on it (e.g. the buildfarm's binary jobs). Guess it then: ament sets
+# AMENT_PREFIX_PATH (bloom's debian/rules passes it to cmake, setup.sh and
+# colcon set the environment variable), catkin never does.
 if("$ENV{ROS_VERSION}" STREQUAL "")
-  set(ENV{ROS_VERSION} 1)
+  if(DEFINED AMENT_PREFIX_PATH OR DEFINED ENV{AMENT_PREFIX_PATH})
+    set(ENV{ROS_VERSION} 2)
+  else()
+    set(ENV{ROS_VERSION} 1)
+  endif()
+  message(WARNING "ROS_VERSION is not set, assuming ROS_VERSION=$ENV{ROS_VERSION}")
 endif()
 
 if($ENV{ROS_VERSION} EQUAL 2)
@@ -13,6 +21,7 @@ if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
 endif()
 
 find_package(ament_cmake_auto REQUIRED)
+find_package(ament_cmake_python REQUIRED)
 
 ament_auto_find_build_dependencies()
 
@@ -30,6 +39,13 @@ ament_auto_add_executable(transform_merger src/transform_merger.cpp)
 ament_auto_add_executable(static_transform_pose_stamped src/static_transform_pose_stamped.cpp)
 
 if(BUILD_TESTING)
+  find_package(ament_cmake_pytest REQUIRED)
+  ament_add_pytest_test(test_array_to_heatmap
+    src/jsk_topic_tools/tests/test_array_to_heatmap.py)
+  ament_add_pytest_test(test_array_to_heatmap_ros2
+    test/test_array_to_heatmap_ros2.py TIMEOUT 40)
+  ament_add_pytest_test(test_filtered_relay_ros2
+    test/test_filtered_relay_ros2.py TIMEOUT 60)
   find_package(ament_cmake_clang_format REQUIRED)
   find_package(launch_testing_ament_cmake REQUIRED)
   ament_clang_format(
@@ -39,6 +55,10 @@ if(BUILD_TESTING)
   )
   add_launch_test(test/connection_based_lifecycle.test.py)
 endif()
+
+ament_python_install_package(${PROJECT_NAME} PACKAGE_DIR src/${PROJECT_NAME})
+jsk_ros1_ros2_compat_install_python(PROGRAMS scripts/array_to_heatmap.py
+  scripts/filtered_relay.py)
 
 ament_auto_package()
 
@@ -225,6 +245,7 @@ if (CATKIN_ENABLE_TESTING)
   endmacro()
   find_package(rostest REQUIRED)
   jsk_topic_tools_add_rostest(test/test_boolean_node.test)
+  jsk_topic_tools_add_rostest(test/test_filtered_relay.test)
   jsk_topic_tools_add_rostest(test/test_topic_buffer.test)
   jsk_topic_tools_add_rostest(test/test_topic_buffer_close_wait.test)
   # topic_buffer tests are tend to fail in GA because of CPU high load.
