@@ -1,0 +1,12 @@
+Source: ros-rolling-audio-video-recorder
+Section: misc
+Priority: optional
+Maintainer: "Shingo Kitagawa" <shingogo.5511@gmail.com>
+Build-Depends: debhelper (>= 9.0.0), libboost-thread-dev, libgstreamer-plugins-base1.0-dev, libgstreamer1.0-dev, ros-rolling-ament-cmake, ros-rolling-audio-common-msgs, ros-rolling-jsk-ros1-ros2-compat, ros-rolling-message-filters, ros-rolling-rclcpp, ros-rolling-ros-environment, ros-rolling-sensor-msgs, ros-rolling-ros-workspace
+Homepage: https://index.ros.org/p/audio_video_recorder/#rolling
+Standards-Version: 3.9.2
+
+Package: ros-rolling-audio-video-recorder
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, gir1.2-gst-plugins-base-1.0, gir1.2-gstreamer-1.0, gstreamer1.0-plugins-base, gstreamer1.0-plugins-good, gstreamer1.0-plugins-ugly, gstreamer1.0-tools, libboost-thread-dev, libgstreamer-plugins-base1.0-0, libgstreamer1.0-0, libgstreamer1.0-dev, ros-rolling-audio-common-msgs, ros-rolling-jsk-ros1-ros2-compat, ros-rolling-message-filters, ros-rolling-rclcpp, ros-rolling-sensor-msgs, ros-rolling-ros-workspace
+Description: ROS package for recording image and audio synchronously
