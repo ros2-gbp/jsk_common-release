@@ -1,0 +1,12 @@
+Source: ros-rolling-image-view2
+Section: misc
+Priority: optional
+Maintainer: "Kei Okada" <k-okada@jsk.t.u-tokyo.ac.jp>
+Build-Depends: debhelper (>= 9.0.0), libboost-thread-dev, python3-numpy <!nocheck>, python3-scipy <!nocheck>, ros-rolling-ament-cmake, ros-rolling-cv-bridge, ros-rolling-geometry-msgs, ros-rolling-image-geometry, ros-rolling-image-transport, ros-rolling-jsk-ros1-ros2-compat, ros-rolling-launch-ros <!nocheck>, ros-rolling-launch-testing <!nocheck>, ros-rolling-launch-testing-ament-cmake <!nocheck>, ros-rolling-message-filters, ros-rolling-pcl-conversions, ros-rolling-rclcpp, ros-rolling-ros-environment, ros-rolling-rosidl-default-generators, ros-rolling-sensor-msgs, ros-rolling-std-msgs, ros-rolling-std-srvs, ros-rolling-tf2-geometry-msgs, ros-rolling-tf2-ros, ros-rolling-ros-workspace, ros-rolling-rosidl-typesupport-fastrtps-c, ros-rolling-rosidl-typesupport-fastrtps-cpp
+Homepage: http://ros.org/wiki/image_view2
+Standards-Version: 3.9.2
+
+Package: ros-rolling-image-view2
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, libboost-thread-dev, libpcl-dev, ros-rolling-cv-bridge, ros-rolling-geometry-msgs, ros-rolling-image-geometry, ros-rolling-image-transport, ros-rolling-jsk-ros1-ros2-compat, ros-rolling-message-filters, ros-rolling-pcl-conversions, ros-rolling-rclcpp, ros-rolling-rosidl-default-runtime, ros-rolling-sensor-msgs, ros-rolling-std-msgs, ros-rolling-std-srvs, ros-rolling-tf2-geometry-msgs, ros-rolling-tf2-ros, ros-rolling-ros-workspace
+Description: A simple viewer for ROS image topics with draw-on features
